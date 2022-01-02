@@ -2,6 +2,6 @@ import { Pool } from 'pg';
 
 export default new Pool({
     max: 20,
-    connectionString: 'postgres://henry:password@localhost:5432/appointmentsDB',
+    connectionString: process.env.POSTGRES_CONN_STRING,
     idleTimeoutMillis: 30000,
 });
