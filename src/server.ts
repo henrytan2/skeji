@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import skejiRouter from "./routers/skejiRouter";
 import pool from "./dbconfig/dbconnector";
 
+console.log(require('dotenv').config());
+
 class Server {
     private app;
 
@@ -20,6 +22,7 @@ class Server {
 
     private dbConnect() {
         pool.connect(function(err, client, done) {
+            console.log(process.env.POSTGRES_CONN_STRING);
             if (err) throw err;
             console.log('Connected');
         });
