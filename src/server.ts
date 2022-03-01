@@ -2,6 +2,8 @@ import express, { Application, Router} from "express";
 import bodyParser from "body-parser";
 import skejiRouter from "./routers/skejiRouter";
 
+console.log(require('dotenv').config());
+
 class Server {
     private app;
 
