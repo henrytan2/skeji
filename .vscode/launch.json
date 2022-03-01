@@ -11,8 +11,9 @@
             "program": "${workspaceFolder}/src/app.ts",
             "sourceMaps": true,
             "trace": true,
+            "console": "integratedTerminal",
             "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
+                "${workspaceFolder}/dist/**/*.js",
             ]
         }
     ]

@@ -1,7 +1,6 @@
 import express, { Application, Router} from "express";
 import bodyParser from "body-parser";
 import skejiRouter from "./routers/skejiRouter";
-import pool from "./dbconfig/dbconnector";
 
 console.log(require('dotenv').config());
 
@@ -12,7 +11,6 @@ class Server {
         this.app = express();
         this.config();
         this.routerConfig();
-        this.dbConnect();
     }
 
     private config() {
@@ -20,16 +18,8 @@ class Server {
         this.app.use(bodyParser.json({limit: "1mb"}));
     }
 
-    private dbConnect() {
-        pool.connect(function(err, client, done) {
-            console.log(process.env.POSTGRES_CONN_STRING);
-            if (err) throw err;
-            console.log('Connected');
-        });
-    }
-
     private routerConfig() {
-        this.app.use("/skeji", skejiRouter);
+        this.app.use("/", skejiRouter);
     }
 
     public start = (port: number) => {
