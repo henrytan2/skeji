@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import IProvider from "../interfaces/IProvider";
 import Provider from "../poco/Provider";
+import { v4 as uuidv4 } from "uuid"
 
 const prisma = new PrismaClient();
 
@@ -26,15 +27,43 @@ export default class ProviderInstance implements IProvider {
         return response;
     }
 
-    async Insert(provider: Provider) {
-        throw new Error("Method not implemented.");
+    async Delete(providerUUID: string) {
+        const deletedUser = await prisma.providers.delete({
+            where: {
+                UUID: providerUUID,
+            }
+        })
     }
 
-    async Delete(providerUUID: string) {
-        throw new Error("Method not implemented.");
+    async Insert(provider: Provider) {
+        const newProvider = await prisma.providers.create({
+            data: {
+                UUID: new uuidv4(),
+                Name: provider.Name,
+                Email: provider.Email,
+                Password: provider.Password,
+                CreatedBy: provider.CreatedBy,
+                CreatedOn: provider.CreatedOn,
+                ModifiedBy: provider.ModifiedBy,
+                ModifiedOn: provider.ModifiedOn,
+            }
+        });
     }
 
     async Update(provider: Provider) {
-        throw new Error("Method not implemented.");
+        const updatedProvider = await prisma.providers.update({
+            where: {
+                UUID: provider.UUID,
+            },
+            data: {
+                Name: provider.Name,
+                Email: provider.Email,
+                Password: provider.Password,
+                CreatedBy: provider.CreatedBy,
+                CreatedOn: provider.CreatedOn,
+                ModifiedBy: provider.ModifiedBy,
+                ModifiedOn: provider.ModifiedOn,
+            }
+        })
     }
 }

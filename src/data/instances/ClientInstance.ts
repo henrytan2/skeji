@@ -1,19 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import IClient from "../interfaces/IClient";
 import Client from "../poco/Client";
-import {v4 as uuidv4} from "uuid"
+import { v4 as uuidv4 } from "uuid"
 
 const prisma = new PrismaClient();
 
-export default class ClientInstance implements IClient{
+export default class ClientInstance implements IClient {
     async FetchByEmail(email: string): Promise<Client> {
         let response = new Client();
         const client = await prisma.clients.findUnique({
             where: {
-                Email :email,
+                Email: email,
             },
         });
-        if (client !== null){
+        if (client !== null) {
             response.CreatedBy = client.CreatedBy;
             response.CreatedOn = client.CreatedOn;
             response.Email = client.Email;
@@ -28,44 +28,47 @@ export default class ClientInstance implements IClient{
         return response;
     }
 
-    async Insert(client: Client) {
-        const newClient = await prisma.clients.create({
-            data: {
-                CreatedBy : client.CreatedBy,
-                CreatedOn : client.CreatedOn,
-                Email : client.Email,
-                ModifiedBy : client.ModifiedBy,
-                ModifiedOn : client.ModifiedOn,
-                FirstName : client.FirstName,
-                LastName : client.LastName,
-                Password : client.Password,
-                UUID : new uuidv4(),
-                DOB : client.DOB,
-            }
-        });
-    }
-    async Delete(clientUUID: string){
+    async Delete(clientUUID: string) {
         const deletedUser = await prisma.clients.delete({
-            where : {
+            where: {
                 UUID: clientUUID,
             }
         })
     }
+
+    async Insert(client: Client) {
+        const newClient = await prisma.clients.create({
+            data: {
+                CreatedBy: client.CreatedBy,
+                CreatedOn: client.CreatedOn,
+                Email: client.Email,
+                ModifiedBy: client.ModifiedBy,
+                ModifiedOn: client.ModifiedOn,
+                FirstName: client.FirstName,
+                LastName: client.LastName,
+                Password: client.Password,
+                UUID: new uuidv4(),
+                DOB: client.DOB,
+            }
+        });
+    }
+
+
     async Update(client: Client) {
-        const updateUser = await prisma.clients.update({
-            where : {
+        const updateClient = await prisma.clients.update({
+            where: {
                 UUID: client.UUID,
             },
             data: {
-                CreatedBy : client.CreatedBy,
-                CreatedOn : client.CreatedOn,
-                Email : client.Email,
-                ModifiedBy : client.ModifiedBy,
-                ModifiedOn : client.ModifiedOn,
-                FirstName : client.FirstName,
-                LastName : client.LastName,
-                Password : client.Password,
-                DOB : client.DOB,
+                CreatedBy: client.CreatedBy,
+                CreatedOn: client.CreatedOn,
+                Email: client.Email,
+                ModifiedBy: client.ModifiedBy,
+                ModifiedOn: client.ModifiedOn,
+                FirstName: client.FirstName,
+                LastName: client.LastName,
+                Password: client.Password,
+                DOB: client.DOB,
             }
         })
     }
