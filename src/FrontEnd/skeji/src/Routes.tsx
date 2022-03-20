@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Layout from './components/layout/Layout';
@@ -31,6 +32,9 @@ const allRoutes = [
 export const RoutesComponent = () => {
     return (
         <Routes>
+            
+                            {/* <Route key={1} path="/" element={<Home/>}/>
+                            <Route key={2} path="/login" element={<Login/>}/> */}
             {allRoutes.map((routes) => {
                 let index = 0;
                 for (const routeName in routes) {
@@ -41,11 +45,10 @@ export const RoutesComponent = () => {
                             key={index}
                             path={route.path}
                             element={
-                                <Layout>
-                                    route.component
-                                </Layout>
+                                <Layout component={route.component}/>
                             }
                         />
+                        
                     );
                 }
             })}

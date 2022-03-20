@@ -6,6 +6,7 @@ const Layout = (props:any) => {
     let loginPath = routes.loginRoutes[routes.loginRouteKey].path;
 
         return (
+            <>
             <nav className="bg-cyan-800">
                 <div className="container mx-auto">
                     <div className="relative flex items-center h-16 justify-between">
@@ -19,6 +20,8 @@ const Layout = (props:any) => {
                     </div>
                 </div>
             </nav>
+            {props.component}
+            </>
         );
 }
 
