@@ -5,20 +5,43 @@ import ForgotPasswordResponse from "../poco/provider/responses/ForgotPasswordRes
 import LoginResponse from "../poco/provider/responses/LoginResponse";
 import DataSingleton from "../../data/DataSingleton";
 import CryptoJS from "crypto-js";
+import ProviderPoco from "../../data/poco/Provider";
 
 export default class Provider implements IProvider {
+
     Create(request: CreateRequest): CreateResponse {
-        throw new Error("Method not implemented.");
+        let response = new CreateResponse();
+        let provider = new ProviderPoco();
+        provider.CreatedBy = request.createdBy;
+        provider.CreatedOn = request.createdOn;
+        provider.Email = request.email;
+        provider.Name = request.name;
+        provider.Password = request.password;
+        provider.ModifiedBy = request.modifiedBy;
+        provider.ModifiedOn = request.modifiedOn;
+
+        try {
+            DataSingleton.Provider.Insert(provider);
+            response.Success = true;
+        } catch (error) {
+            // create provider handling
+        }
+        return response;
     }
 
-    async Login(email: string, password: string): Promise<LoginResponse> {
-        let provider = DataSingleton.Provider.FetchByEmail(email);
-        let passwordHashed = CryptoJS.SHA256(password).toString();
+    public async Login(email: string, password: string): Promise<LoginResponse> {
         let response = new LoginResponse();
-        response.Success = false;
-
-        if ((await provider)?.Password == passwordHashed) {
-            response.Success = true;
+        try {
+            let provider = DataSingleton.Provider.FetchByEmail(email);
+            let passwordHashed = CryptoJS.SHA256(password).toString();
+            
+            response.Success = false;
+    
+            if ((await provider)?.Password == passwordHashed) {
+                response.Success = true;
+            }
+        } catch (error) {
+            // login error handling   
         }
         return response;
     }

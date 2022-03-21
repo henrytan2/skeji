@@ -29,41 +29,24 @@ export default class Client implements IClient {
         }
         return response;
     }
-    async Login(email: string, password: string): Promise<LoginResponse >{
-        let client = DataSingleton.Client.FetchByEmail(email);
-        let passwordHashed = CryptoJS.SHA256(password).toString();
-        let response = new LoginResponse();
-        response.Success = false;
 
-        if ((await client)?.Password == passwordHashed) {
-            response.Success = true;
+    async Login(email: string, password: string): Promise<LoginResponse >{
+        let response = new LoginResponse();
+        try {
+            let client = DataSingleton.Client.FetchByEmail(email);
+            let passwordHashed = CryptoJS.SHA256(password).toString();
+            response.Success = false;
+    
+            if ((await client)?.Password == passwordHashed) {
+                response.Success = true;
+            }
+        } catch (error) {
+            // login error handling
         }
         return response;
     }
+    
     ForgotPassword(email: string): ForgotPasswordResponse {
         throw new Error("Method not implemented.");
     } 
 }
-
-// async CreateClient(request : CreateClientRequest): Promise<CreateAccountResponse> {
-//     let response = new CreateAccountResponse(false);
-//     let passwordHashed = CryptoJS.SHA256(request.password).toString();
-//     var clientUUID = new uuidv4();
-//     const newClient = prisma.clients.create({
-//         data: {
-//             UUID: clientUUID,
-//             FirstName: request.firstname,
-//             LastName: request.lastname,
-//             Email: request.email,
-//             Password: passwordHashed,
-//             DOB: request.dob,
-//             CreatedOn: new Date(),
-//             CreatedBy: clientUUID,
-//             ModifiedOn: new Date(),
-//             ModifiedBy: clientUUID,
-//         },
-//     }).then(() => {
-//         response.Success = true;
-//     });
-//     return response;
-// }

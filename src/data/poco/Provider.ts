@@ -1,4 +1,4 @@
-export default class Provider {
+export default class ProviderPoco {
   private _UUID!: string;
     public get UUID(): string {
         return this._UUID;
