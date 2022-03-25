@@ -1,19 +1,19 @@
 import React from "react";
 
 interface PasswordInputProps {
-    keyUpHandler: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  keyUpHandler: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 function PasswordInput(props: PasswordInputProps) {
-    return (
-        <>
-        <div className="mb-3 xl:w-96">
-                  <label className="form-label inline-block mb-2 text-gray-700">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="
+  return (
+    <>
+      <div className="mb-3 xl:w-82">
+        <label className="form-label inline-block mb-2 text-gray-700">
+          Password
+        </label>
+        <input
+          type="password"
+          className="
                   form-control
                   block
                   w-full
@@ -30,14 +30,14 @@ function PasswordInput(props: PasswordInputProps) {
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-cyan-600 focus:outline-none
                 "
-                    placeholder="password"
-                    onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => {
-                        props.keyUpHandler(event);
-                      }}
-                  />
-                </div>
-        </>
-    )
+          placeholder="password"
+          onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => {
+            props.keyUpHandler(event);
+          }}
+        />
+      </div>
+    </>
+  )
 }
 
 export default PasswordInput;

@@ -7,11 +7,11 @@ interface EmailInputProps {
 function EmailInput(props: EmailInputProps) {
     return (
         <>
-        <div className="mb-3 xl:w-96">
-                  <label className="form-label inline-block mb-2 text-gray-700">
+            <div className="mb-3 xl:w-82">
+                <label className="form-label inline-block mb-2 text-gray-700">
                     Email
-                  </label>
-                  <input
+                </label>
+                <input
                     type="email"
                     className="
                   form-control
@@ -33,9 +33,9 @@ function EmailInput(props: EmailInputProps) {
                     placeholder="email@domain.com"
                     onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => {
                         props.keyUpHandler(event);
-                      }}
-                  />
-                </div>
+                    }}
+                />
+            </div>
         </>
     )
 }
