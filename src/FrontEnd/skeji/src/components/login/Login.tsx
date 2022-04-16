@@ -15,6 +15,7 @@ export default function Login() {
     const [clientPassword, setClientPassword] = useState("");
 
     let providerCreatePath = routes.providerRoutes[routes.providerCreateKey].path;
+    // let clientCreatePath = routes.clientRoutes[routes.clientCreateKey].path;
 
     function handleProviderTabClick() {
         if (providerTabIsActive) {
@@ -155,7 +156,28 @@ export default function Login() {
                         )}
                         {clientTabIsActive && (
                             // todo form for clients
-                            <></>
+                            <div className="flex-auto justify-start">
+                                <div>
+                                    <EmailInput
+                                        keyUpHandler={handleClientEmailInput}
+                                    ></EmailInput>
+                                    <PasswordInput
+                                        keyUpHandler={handleClientPasswordInput}
+                                        label="Password"
+                                        placeholder="Password"
+                                    ></PasswordInput>
+                                    {/* <HyperLink linkTo={clientCreatePath} text="Create Account" /> */}
+                                    <div className="flex justify-end">
+                                        <SingleClickButton
+                                            buttonText="Login"
+                                            onClickHandler={
+                                                () => {
+                                                    console.log("A");
+                                                }
+                                            }/>
+                                    </div>
+                                </div>
+                            </div>
                         )}
                     </div>
                 </div>

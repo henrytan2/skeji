@@ -6,6 +6,7 @@ import LoginResponse from "../poco/provider/responses/LoginResponse";
 import DataSingleton from "../../data/DataSingleton";
 import CryptoJS from "crypto-js";
 import ProviderPoco from "../../data/poco/Provider";
+import ProviderDetails from "../../data/poco/ProviderDetails";
 
 export default class Provider implements IProvider {
 
@@ -22,6 +23,13 @@ export default class Provider implements IProvider {
 
         try {
             DataSingleton.Provider.Insert(provider);
+            request.ProviderDetails.forEach(o => {
+                let providerDetail = new ProviderDetails();
+                providerDetail.providerUUID = o.providerUUID;
+                providerDetail.key = o.key.toString();
+                providerDetail.value = o.value;
+                DataSingleton.ProviderDetails.Insert(providerDetail);
+            });
             response.Success = true;
         } catch (error) {
             // create provider handling

@@ -16,5 +16,6 @@ router.use(bodyParser.urlencoded({
 
 
 router.post('/provider/login', providerController.login);
+router.post('/provider/create', providerController.create);
 
 export default router;

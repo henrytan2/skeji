@@ -88,7 +88,6 @@ function ClientCreate() {
           let passwordsMatch = comparePasswords();
           let response = {} as CreateAccountRequest;
           if (passwordsMatch) {
-              debugger;
               response.name = name;
               response.email = email;
               response.password = password1;

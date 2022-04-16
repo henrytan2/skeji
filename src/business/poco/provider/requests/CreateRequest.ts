@@ -1,3 +1,6 @@
+import ProviderDetails from "../enums/ProviderDetails";
+import IProviderDetails from "../IProviderDetail";
+
 class CreateRequest {
     private _name!: string;
     public get name(): string {
@@ -47,6 +50,13 @@ class CreateRequest {
     }
     public set modifiedOn(value: Date | undefined) {
         this._modifiedOn = value;
+    }
+    private _ProviderDetails!: IProviderDetails[];
+    public get ProviderDetails(): IProviderDetails[] {
+        return this._ProviderDetails;
+    }
+    public set ProviderDetails(value: IProviderDetails[]) {
+        this._ProviderDetails = value;
     }
 }
 
