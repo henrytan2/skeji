@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Layout from './components/layout/Layout';
 import Login from './components/login/Login';
 import ProviderCreate from './components/provider/ProviderCreate';
+import ProviderCalendar from './components/provider/ProviderCalendar';
 
 interface IRoute {
     path: string;
@@ -13,6 +14,7 @@ interface IRoute {
 export const homeRouteKey = 'home';
 export const loginRouteKey = 'login';
 export const providerCreateKey = 'providerCreate';
+export const providerCalendarKey = 'providerCalendar';
 
 export const indexRoutes: { [name: string]: IRoute } = {};
 indexRoutes[homeRouteKey] = {
@@ -26,10 +28,14 @@ loginRoutes[loginRouteKey] = {
     component: <Login />
 } as IRoute
 
-export const providerRoutes: {[name: string]: IRoute} = {};
+export const providerRoutes: { [name: string]: IRoute } = {};
 providerRoutes[providerCreateKey] = {
     path: '/provider/create',
     component: <ProviderCreate />
+}
+providerRoutes[providerCalendarKey] = {
+    path: '/provider/calendar',
+    component: <ProviderCalendar />
 }
 
 
@@ -40,25 +46,24 @@ const allRoutes = [
 ];
 
 export const RoutesComponent = () => {
+    let index = 0;
     return (
         <Routes>
-            {allRoutes.map((routes) => {
-                let index = 0;
-                for (const routeName in routes) {
-                    const route = routes[routeName];
-                    index++;
-                    return (
-                        <Route
+            {
+                allRoutes.map((routes) => {
+                    let response = [];
+                    for (const routeName in routes) {
+                        const route = routes[routeName];
+                        response.push(<Route
                             key={index}
                             path={route.path}
                             element={
-                                <Layout component={route.component}/>
+                                <Layout component={route.component} />
                             }
-                        />
-                        
-                    );
-                }
-            })}
+                        />);
+                    }
+                    return response;
+                })}
         </Routes>
     )
 }
