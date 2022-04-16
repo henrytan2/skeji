@@ -11,6 +11,8 @@ export default function Login() {
     const [clientTabIsActive, setClientTabIsActive] = useState(false);
     const [providerEmail, setProviderEmail] = useState("");
     const [providerPassword, setProviderPassword] = useState("");
+    const [clientEmail, setClientEmail] = useState("");
+    const [clientPassword, setClientPassword] = useState("");
 
     let providerCreatePath = routes.providerRoutes[routes.providerCreateKey].path;
 
@@ -43,6 +45,20 @@ export default function Login() {
     ) => {
         setProviderPassword((event.target as HTMLInputElement).value);
     };
+
+    const handleClientEmailInput = (
+        event: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        setClientEmail((event.target as HTMLInputElement).value);
+    };
+
+    const handleClientPasswordInput = (
+        event: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        setClientPassword((event.target as HTMLInputElement).value);
+    };
+
+
 
     return (
         <>
