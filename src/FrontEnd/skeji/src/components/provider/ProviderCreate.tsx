@@ -10,7 +10,7 @@ interface CreateAccountRequest {
     name: string;
     email: string;
     password: string;
-    adress1: string;
+    address1: string;
     address2: string;
     city: string;
     state: string;
@@ -90,7 +90,7 @@ function ProviderCreate() {
           response.name = name;
           response.email = email;
           response.password = password1;
-          response.adress1 = address1;
+          response.address1 = address1;
           response.address2 = address2;
           response.city = city;
           response.state = state;

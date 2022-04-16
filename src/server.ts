@@ -1,6 +1,7 @@
 import express, { Application, Router} from "express";
 import bodyParser from "body-parser";
 import skejiRouter from "./routers/skejiRouter";
+import cors from 'cors';
 
 console.log(require('dotenv').config());
 
@@ -14,6 +15,7 @@ class Server {
     }
 
     private config() {
+        this.app.options('*', cors());
         this.app.use(bodyParser.urlencoded({extended: true}));
         this.app.use(bodyParser.json({limit: "1mb"}));
     }
