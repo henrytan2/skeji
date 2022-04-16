@@ -10,11 +10,9 @@ import ProviderDetails from "../../data/poco/ProviderDetails";
 
 export default class Provider implements IProvider {
 
-    Create(request: CreateRequest): CreateResponse {
+    async Create(request: CreateRequest): Promise<CreateResponse> {
         let response = new CreateResponse();
         let provider = new ProviderPoco();
-        provider.CreatedBy = request.createdBy;
-        provider.CreatedOn = request.createdOn;
         provider.Email = request.email;
         provider.Name = request.name;
         provider.Password = request.password;
@@ -22,10 +20,10 @@ export default class Provider implements IProvider {
         provider.ModifiedOn = request.modifiedOn;
 
         try {
-            DataSingleton.Provider.Insert(provider);
+            let newProvider = await DataSingleton.Provider.Insert(provider);
             request.ProviderDetails.forEach(o => {
                 let providerDetail = new ProviderDetails();
-                providerDetail.providerUUID = o.providerUUID;
+                providerDetail.providerUUID = newProvider.UUID;
                 providerDetail.key = o.key.toString();
                 providerDetail.value = o.value;
                 DataSingleton.ProviderDetails.Insert(providerDetail);

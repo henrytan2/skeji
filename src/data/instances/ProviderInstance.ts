@@ -35,19 +35,30 @@ export default class ProviderInstance implements IProvider {
         })
     }
 
-    async Insert(provider: Provider) {
+    async Insert(provider: Provider) : Promise<Provider> {
+        const uuid = uuidv4();
+        const createdOn = new Date();
         const newProvider = await prisma.providers.create({
             data: {
-                UUID: new uuidv4(),
+                UUID: uuid,
                 Name: provider.Name,
                 Email: provider.Email,
                 Password: provider.Password,
-                CreatedBy: provider.CreatedBy,
-                CreatedOn: provider.CreatedOn,
+                CreatedBy: uuid,
+                CreatedOn: createdOn,
                 ModifiedBy: provider.ModifiedBy,
-                ModifiedOn: provider.ModifiedOn,
+                ModifiedOn: createdOn,
             }
         });
+        let response = new Provider();
+        response.Name = newProvider.Name;
+        response.UUID = newProvider.UUID;
+        response.Email = newProvider.Email;
+        response.Password = newProvider.Password;
+        response.CreatedBy = newProvider.CreatedBy;
+        response.ModifiedBy = newProvider.ModifiedBy != null ? newProvider.ModifiedBy : undefined;
+        response.ModifiedOn = newProvider.ModifiedOn != null ? newProvider.ModifiedOn : undefined;
+        return response;
     }
 
     async Update(provider: Provider) {

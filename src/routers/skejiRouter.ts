@@ -5,7 +5,9 @@ import ProviderController from '../controllers/provider/ProviderController';
 const router = Router();
 const providerController = new ProviderController();
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 app.use(express.static(__dirname + '/public'));
 
 let bodyParser = require('body-parser');

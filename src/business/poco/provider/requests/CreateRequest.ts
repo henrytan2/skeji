@@ -23,20 +23,6 @@ class CreateRequest {
     public set email(value: string) {
         this._email = value;
     }
-    private _createdBy!: string;
-    public get createdBy(): string {
-        return this._createdBy;
-    }
-    public set createdBy(value: string) {
-        this._createdBy = value;
-    }
-    private _createdOn!: Date;
-    public get createdOn(): Date {
-        return this._createdOn;
-    }
-    public set createdOn(value: Date) {
-        this._createdOn = value;
-    }
     private _modifiedBy!: string;
     public get modifiedBy(): string {
         return this._modifiedBy;
@@ -51,7 +37,7 @@ class CreateRequest {
     public set modifiedOn(value: Date | undefined) {
         this._modifiedOn = value;
     }
-    private _ProviderDetails!: IProviderDetails[];
+    private _ProviderDetails: IProviderDetails[] = [];
     public get ProviderDetails(): IProviderDetails[] {
         return this._ProviderDetails;
     }

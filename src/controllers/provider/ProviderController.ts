@@ -57,8 +57,8 @@ export default class LoginController {
                 value: zip,
             } as IProviderDetail)
 
-            let createResponse = Business.Provider.Create(createRequest);
-            if ((await createResponse.Success)) {
+            let createResponse = await Business.Provider.Create(createRequest);
+            if ((createResponse.Success)) {
                 response = true;
             }
             return res.send(response);
