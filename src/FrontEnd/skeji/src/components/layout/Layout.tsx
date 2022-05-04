@@ -1,7 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { getUrlFromRouteName } from "../../route/routeHelper";
-import * as routes from "../../route/Routes";
 import { IndexRoutes } from "../../route/routeName";
 
 const Layout = (props: any) => {
