@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getUrlFromRouteName } from "../../route/routeHelper";
 import * as routes from "../../route/Routes";
-import { RouteName } from "../../route/routeName";
+import { IndexRoutes } from "../../route/routeName";
 
 const Layout = (props: any) => {
-    let loginUrl = getUrlFromRouteName(RouteName.login);
-    let homeUrl = getUrlFromRouteName(RouteName.home);
+    let loginUrl = getUrlFromRouteName(IndexRoutes.login);
+    let homeUrl = getUrlFromRouteName(IndexRoutes.home);
 
     return (
         <>

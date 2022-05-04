@@ -1,9 +1,8 @@
 import Home from '../components/Home';
-import Layout from '../components/layout/Layout';
 import Login from '../components/login/Login';
 import ProviderCreate from '../components/provider/ProviderCreate';
 import ProviderCalendar from '../components/provider/ProviderCalendar';
-import { RouteName } from './routeName';
+import { RouteName, IndexRoutes, ProviderRoutes } from './routeName';
 
 interface IRoute {
     path: string;
@@ -14,21 +13,21 @@ type RouteDictionary = { [name in RouteName]: IRoute };
 
 export const routeDictionary = {} as RouteDictionary;
 
-routeDictionary[RouteName.home] = {
+routeDictionary[IndexRoutes.home] = {
     path: '/',
     component: <Home />
 }
 
-routeDictionary[RouteName.login] = {
+routeDictionary[IndexRoutes.login] = {
     path: '/login',
     component: <Login />
 }
 
-routeDictionary[RouteName.providerCreate] = {
+routeDictionary[ProviderRoutes.providerCreate] = {
     path: '/provider/create',
     component: <ProviderCreate />
 }
-routeDictionary[RouteName.providerCalendar] = {
+routeDictionary[ProviderRoutes.providerCalendar] = {
     path: '/provider/calendar',
     component: <ProviderCalendar />
 }

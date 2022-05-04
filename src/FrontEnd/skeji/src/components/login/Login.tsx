@@ -4,7 +4,7 @@ import EmailInput from "../shared/EmailInput";
 import PasswordInput from "../shared/PasswordInput";
 import SingleClickButton from "../shared/SingleClickButton";
 import HyperLink from "../shared/HyperLink";
-import { RouteName } from "../../route/routeName";
+import { ProviderRoutes } from "../../route/routeName";
 import { getUrlFromRouteName } from "../../route/routeHelper";
 
 export default function Login() {
@@ -13,7 +13,7 @@ export default function Login() {
     const [providerEmail, setProviderEmail] = useState("");
     const [providerPassword, setProviderPassword] = useState("");
 
-    let providerCreateUrl = getUrlFromRouteName(RouteName.providerCreate);
+    let providerCreateUrl = getUrlFromRouteName(ProviderRoutes.providerCreate);
 
     function handleProviderTabClick() {
         if (providerTabIsActive) {
