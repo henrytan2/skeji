@@ -3,13 +3,7 @@ import Layout from '../components/layout/Layout';
 import Login from '../components/login/Login';
 import ProviderCreate from '../components/provider/ProviderCreate';
 import ProviderCalendar from '../components/provider/ProviderCalendar';
-
-enum RouteName {
-    home,
-    login,
-    providerCreate,
-    providerCalendar,
-}
+import { RouteName } from './routeName';
 
 interface IRoute {
     path: string;
