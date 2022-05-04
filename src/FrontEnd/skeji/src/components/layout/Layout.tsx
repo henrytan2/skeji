@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as routes from "../../Routes";
+import { getUrlFromRouteName } from "../../route/routeHelper";
+import * as routes from "../../route/Routes";
+import { RouteName } from "../../route/routeName";
 
 const Layout = (props: any) => {
-    let loginPath = routes.loginRoutes[routes.loginRouteKey].path;
-    let homePath = routes.indexRoutes[routes.homeRouteKey].path;
+    let loginUrl = getUrlFromRouteName(RouteName.login);
+    let homeUrl = getUrlFromRouteName(RouteName.home);
 
     return (
         <>
@@ -13,11 +15,11 @@ const Layout = (props: any) => {
                     <div className="relative flex items-center h-16 justify-between">
                         <Link
                             className="text-white text-4xl ml-10 myfont text-left hover:cursor-pointer"
-                            to={homePath}>
+                            to={homeUrl}>
                             skeji
                         </Link>
                         <Link className="text-right text-white border border-cyan-800 rounded text-xl myfont mx-10 hover:bg-cyan-700 py-1 px-3"
-                            to={loginPath}>
+                            to={loginUrl}>
                             Login
                         </Link>
                     </div>

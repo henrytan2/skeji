@@ -4,7 +4,8 @@ import EmailInput from "../shared/EmailInput";
 import PasswordInput from "../shared/PasswordInput";
 import SingleClickButton from "../shared/SingleClickButton";
 import HyperLink from "../shared/HyperLink";
-import * as routes from "../../Routes";
+import { RouteName } from "../../route/routeName";
+import { getUrlFromRouteName } from "../../route/routeHelper";
 
 export default function Login() {
     const [providerTabIsActive, setProviderTabIsActive] = useState(true);
@@ -12,7 +13,7 @@ export default function Login() {
     const [providerEmail, setProviderEmail] = useState("");
     const [providerPassword, setProviderPassword] = useState("");
 
-    let providerCreatePath = routes.providerRoutes[routes.providerCreateKey].path;
+    let providerCreateUrl = getUrlFromRouteName(RouteName.providerCreate);
 
     function handleProviderTabClick() {
         if (providerTabIsActive) {
@@ -124,7 +125,7 @@ export default function Login() {
                                         label="Password"
                                         placeholder="Password"
                                     ></PasswordInput>
-                                    <HyperLink linkTo={providerCreatePath} text="Create Account" />
+                                    <HyperLink linkTo={providerCreateUrl} text="Create Account" />
                                     <div className="flex justify-end">
                                         <SingleClickButton
                                             buttonText="Login"

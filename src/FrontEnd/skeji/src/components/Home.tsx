@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as routes from "../Routes";
+import * as routes from "../route/Routes";
 
 function Home() {
   return (

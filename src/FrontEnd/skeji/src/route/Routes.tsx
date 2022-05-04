@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Layout from './components/layout/Layout';
-import Login from './components/login/Login';
-import ProviderCreate from './components/provider/ProviderCreate';
-import ProviderCalendar from './components/provider/ProviderCalendar';
+import Home from '../components/Home';
+import Layout from '../components/layout/Layout';
+import Login from '../components/login/Login';
+import ProviderCreate from '../components/provider/ProviderCreate';
+import ProviderCalendar from '../components/provider/ProviderCalendar';
 
 interface IRoute {
     path: string;
