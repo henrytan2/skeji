@@ -1,31 +1,34 @@
+import ClientDetails from "../enums/ClientDetails";
+import IClientDetails from "../IClientDetails";
+
 class CreateRequest {
-    private _FirstName!: string;
-    public get FirstName(): string {
-        return this._FirstName;
+    private _firstName!: string;
+    public get firstName(): string {
+        return this._firstName;
     }
     public set FirstName(value: string) {
-        this._FirstName = value;
+        this._firstName = value;
     }
-    private _LastName!: string;
+    private _lastName!: string;
     public get LastName(): string {
-        return this._LastName;
+        return this._lastName;
     }
     public set LastName(value: string) {
-        this._LastName = value;
+        this._lastName = value;
     }
-    private _Password!: string;
-    public get Password(): string {
-        return this._Password;
+    private _password!: string;
+    public get password(): string {
+        return this._password;
     }
-    public set Password(value: string) {
-        this._Password = value;
+    public set password(value: string) {
+        this._password = value;
     }
-    private _Email!: string;
-    public get Email(): string {
-        return this._Email;
+    private _email!: string;
+    public get email(): string {
+        return this._email;
     }
-    public set Email(value: string) {
-        this._Email = value;
+    public set email(value: string) {
+        this._email = value;
     }
     private _DOB!: Date;
     public get DOB(): Date {
@@ -35,33 +38,40 @@ class CreateRequest {
         this._DOB = value;
     }
 
-    private _CreatedBy!: string;
-    public get CreatedBy(): string {
-        return this._CreatedBy;
+    private _createdBy!: string;
+    public get createdBy(): string {
+        return this._createdBy;
     }
-    public set CreatedBy(value: string) {
-        this._CreatedBy = value;
+    public set createdBy(value: string) {
+        this._createdBy = value;
     }
-    private _CreatedOn!: Date;
-    public get CreatedOn(): Date {
-        return this._CreatedOn;
+    private _createdOn!: Date;
+    public get createdOn(): Date {
+        return this._createdOn;
     }
-    public set CreatedOn(value: Date) {
-        this._CreatedOn = value;
+    public set createdOn(value: Date) {
+        this._createdOn = value;
     }
-    private _ModifiedBy?: string | undefined;
-    public get ModifiedBy(): string | undefined {
-        return this._ModifiedBy;
+    private _modifiedBy?: string | undefined;
+    public get modifiedBy(): string | undefined {
+        return this._modifiedBy;
     }
-    public set ModifiedBy(value: string | undefined) {
-        this._ModifiedBy = value;
+    public set modifiedBy(value: string | undefined) {
+        this._modifiedBy = value;
     }
-    private _ModifiedOn?: Date | undefined;
-    public get ModifiedOn(): Date | undefined {
-        return this._ModifiedOn;
+    private _modifiedOn?: Date | undefined;
+    public get modifiedOn(): Date | undefined {
+        return this._modifiedOn;
     }
-    public set ModifiedOn(value: Date | undefined) {
-        this._ModifiedOn = value;
+    public set modifiedOn(value: Date | undefined) {
+        this._modifiedOn = value;
+    }
+    private _ClientDetails: IClientDetails[] = [];
+    public get ClientDetails(): IClientDetails[] {
+        return this._ClientDetails;
+    }
+    public set ClientDetails(value: IClientDetails[]) {
+        this._ClientDetails = value;
     }
 }
 
