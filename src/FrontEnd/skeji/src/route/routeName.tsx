@@ -1,11 +1,11 @@
 export enum IndexRoutes {
-    home,
-    login,
+    home = 0,
+    login = 1,
 }
 
 export enum ProviderRoutes {
-    providerCreate,
-    providerCalendar,
+    providerCreate = 3,
+    providerCalendar = 4,
 }
 
 
