@@ -4,7 +4,7 @@ import EmailInput from "../shared/EmailInput";
 import PasswordInput from "../shared/PasswordInput";
 import SingleClickButton from "../shared/SingleClickButton";
 import HyperLink from "../shared/HyperLink";
-import * as routes from "../../Routes";
+import * as routes from "../../route/Routes"
 
 export default function Login() {
     const [providerTabIsActive, setProviderTabIsActive] = useState(true);

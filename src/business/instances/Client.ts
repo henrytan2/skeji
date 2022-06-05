@@ -9,20 +9,32 @@ import ClientPoco from "../../data/poco/Client";
 
 export default class Client implements IClient {
     Create(request: CreateRequest): CreateResponse {
-        let response = new CreateResponse();
-        let client = new ClientPoco();
-        client.Email = request.Email;
-        client.CreatedBy = request.CreatedBy;
-        client.CreatedOn = request.CreatedOn;
-        client.ModifiedBy = request.ModifiedBy;
-        client.ModifiedOn = request.ModifiedOn;
+        let response : CreateResponse = {
+            success: false,
+        }
+        let client : ClientPoco = {
+            firstName: request.firstName,
+            lastName: request.lastName,
+            DOB: request.DOB,
+            email: request.email,
+            password: request.password,
+            createdOn: request.createdOn,
+            createdBy: request.createdBy,
+            modifiedOn: request.modifiedOn,
+            modifiedBy: request.modifiedBy,
+        }
+        client.email = request.email;
+        client.createdBy = request.createdBy;
+        client.createdOn = request.createdOn;
+        client.modifiedBy = request.modifiedBy;
+        client.modifiedOn = request.modifiedOn;
         client.DOB = request.DOB;
-        client.FirstName = request.FirstName;
-        client.LastName = request.LastName;
-        client.Password = request.Password;
+        client.firstName = request.firstName;
+        client.lastName = request.lastName;
+        client.password = request.password;
         try {
             DataSingleton.Client.Insert(client);
-            response.Success = true;
+            response.success = true;
         } 
         catch (e) {
             // create account handling
@@ -31,14 +43,16 @@ export default class Client implements IClient {
     }
 
     async Login(email: string, password: string): Promise<LoginResponse >{
-        let response = new LoginResponse();
+        let response : LoginResponse = {
+            success : false,
+        };
         try {
             let client = DataSingleton.Client.FetchByEmail(email);
             let passwordHashed = CryptoJS.SHA256(password).toString();
-            response.Success = false;
+            response.success = false;
     
-            if ((await client)?.Password == passwordHashed) {
-                response.Success = true;
+            if ((await client)?.password == passwordHashed) {
+                response.success = true;
             }
         } catch (error) {
             // login error handling

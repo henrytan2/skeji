@@ -5,9 +5,12 @@ import PasswordInput from "../shared/PasswordInput";
 import SingleClickButton from "../shared/SingleClickButton";
 import TextInput from "../shared/TextInput";
 import axios from "axios";
+import { DatePicker } from "../shared/DatePicker";
 
 interface CreateAccountRequest {
-    name: string;
+    firstName: string;
+    lastName: string,
+    dob: Date,
     email: string;
     password: string;
     address1: string;
@@ -19,7 +22,9 @@ interface CreateAccountRequest {
 }
 
 function ClientCreate() {
-    const [name, setName] = useState("");
+    const [firstName, setfirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [dob, setDOB] = useState(new Date());
     const[email, setEmail] = useState("");
     const[password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
@@ -29,11 +34,18 @@ function ClientCreate() {
     const [state, setState] = useState("");
     const [zip, setZip] = useState("");
 
-    const handleClientNameInput = (
+    const handleClientFirstNameInput = (
         event: React.KeyboardEvent<HTMLInputElement>
       ) => {
-        setName((event.target as HTMLInputElement).value);
+        setfirstName((event.target as HTMLInputElement).value);
       };
+
+      const handleClientLastNameInput = (
+        event: React.KeyboardEvent<HTMLInputElement>
+      ) => {
+        setLastName((event.target as HTMLInputElement).value);
+      };
+
     
       const handleEmailInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
         setEmail((event.target as HTMLInputElement).value);
@@ -88,7 +100,9 @@ function ClientCreate() {
           let passwordsMatch = comparePasswords();
           let response = {} as CreateAccountRequest;
           if (passwordsMatch) {
-              response.name = name;
+              response.firstName = firstName;
+              response.lastName = lastName;
+              response.dob = dob;
               response.email = email;
               response.password = password1;
               response.address1 = address1;
@@ -116,13 +130,28 @@ function ClientCreate() {
               <div className="block p-6 rounded-lg shadow-lg bg-white max-w-2xl">
                 <h1 className="text-2xl mb-4">Create Account</h1>
                 <div className="grid grid-cols-6 gap-2">
-                  <div className="col-span-6">
+                  <div className="col-span-3">
+                  
                     <TextInput
-                      label="Name"
-                      placeholder="Name"
-                      keyUpHandler={handleClientNameInput}
+                      label="FirstName"
+                      placeholder="First Name"
+                      keyUpHandler={handleClientFirstNameInput}
                     />
+                    
                   </div>
+                  <div className="col-span-3">
+                    <TextInput
+                        label="LastName"
+                        placeholder="Last Name"
+                        keyUpHandler={handleClientLastNameInput}
+                      />
+                  </div>
+
+                  <div className="col-span-6">
+
+                    <DatePicker setDate={ setDOB } labelText = {"Date of Birth"} />
+                  </div>
+
                   <div className="col-span-6">
                     <EmailInput keyUpHandler={handleEmailInput} />
                   </div>

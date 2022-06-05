@@ -11,7 +11,7 @@ datasource db {
 }
 
 model AppointmentDetails {
-  AppointmentUUID String @id @default(uuid())
+  AppointmentUUID String @unique @default(uuid())
   Key String @unique
   Value String
 }
@@ -28,9 +28,11 @@ model Appointments {
 }
 
 model ClientDetails {
-  ClientUUID String @id @default(uuid())
+  ClientUUID String @default(uuid())
   Key String @unique
   Value String
+
+  @@unique([ClientUUID, Key], map: "clientDetails_UK")
 }
 
 model Clients {
@@ -47,9 +49,11 @@ model Clients {
 }
 
 model ProviderDetails {
-  ProviderUUID String @id @default(uuid())
-  Key String @unique
+  ProviderUUID String @default(uuid())
+  Key String
   Value String 
+
+  @@unique([ProviderUUID, Key], map: "providerDetails_UK")
 }
 
 model Providers {

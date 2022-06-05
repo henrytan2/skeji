@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Layout from './components/layout/Layout';
-import Login from './components/login/Login';
-import ProviderCreate from './components/provider/ProviderCreate';
-import ProviderCalendar from './components/provider/ProviderCalendar';
+import Home from '../components/Home';
+import Layout from '../components/layout/Layout';
+import Login from '../components/login/Login';
+import ProviderCreate from '../components/provider/ProviderCreate';
+import ProviderCalendar from '../components/provider/ProviderCalendar';
+import ClientCreate from '../components/client/ClientCreate';
 
 interface IRoute {
     path: string;
@@ -15,6 +16,7 @@ export const homeRouteKey = 'home';
 export const loginRouteKey = 'login';
 export const providerCreateKey = 'providerCreate';
 export const providerCalendarKey = 'providerCalendar';
+export const clientCreateKey = 'clientCreate';
 
 export const indexRoutes: { [name: string]: IRoute } = {};
 indexRoutes[homeRouteKey] = {
@@ -38,11 +40,17 @@ providerRoutes[providerCalendarKey] = {
     component: <ProviderCalendar />
 }
 
+export const clientRoutes: { [name: string]: IRoute } = {};
+clientRoutes[clientCreateKey] = {
+    path: '/client/create',
+    component: <ClientCreate />
+} as IRoute
 
 const allRoutes = [
     indexRoutes,
     loginRoutes,
     providerRoutes,
+    clientRoutes,
 ];
 
 export const RoutesComponent = () => {
@@ -61,6 +69,7 @@ export const RoutesComponent = () => {
                                 <Layout component={route.component} />
                             }
                         />);
+                        index++;
                     }
                     return response;
                 })}

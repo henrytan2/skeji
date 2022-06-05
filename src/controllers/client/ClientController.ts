@@ -63,5 +63,8 @@ export default class LoginController {
                 response = true;
             }
             return res.send(response); }
+            catch (e) {
+                // error handling
+            }
     }
 }
